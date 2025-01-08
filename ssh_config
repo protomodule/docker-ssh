@@ -1,0 +1,10 @@
+Include /etc/ssh/ssh_config.d/*.conf
+
+# General hardening
+Host *
+  ForwardX11 no
+  ForwardX11Trusted no
+  ForwardAgent no
+  HostbasedAuthentication no
+  StrictHostKeyChecking ask
+  Ciphers -arcfour*,-*cbc
