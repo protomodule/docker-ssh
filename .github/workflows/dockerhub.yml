@@ -38,4 +38,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ssh:latest, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.version.outputs.major_without_prefix}}.${{steps.version.outputs.minor}}.${{steps.version.outputs.patch}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}.${{steps.tag.outputs.minor}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ssh:latest, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.version.outputs.major_without_prefix}}.${{steps.version.outputs.minor}}.${{steps.version.outputs.patch}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.version.outputs.major_without_prefix}}.${{steps.version.outputs.minor}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.version.outputs.major_without_prefix}}
