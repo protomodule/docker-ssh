@@ -14,8 +14,10 @@ jobs:
         uses: actions/checkout@v4
       - 
         name: Get version
-        id: tag
-        uses: LongOddCode/semantic-versioning-tag@0.6.0
+        id: version
+        uses: nowsprinting/check-version-format-action@v3
+        with:
+          prefix: 'v'
       - 
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -36,4 +38,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ssh:latest, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}.${{steps.tag.outputs.minor}}.${{steps.tag.outputs.patch}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}.${{steps.tag.outputs.minor}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ssh:latest, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.version.outputs.major_without_prefix}}.${{steps.version.outputs.minor}}.${{steps.version.outputs.patch}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}.${{steps.tag.outputs.minor}}, ${{ secrets.DOCKERHUB_USERNAME }}/ssh:${{steps.tag.outputs.major}}
