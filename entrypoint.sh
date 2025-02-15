@@ -31,7 +31,12 @@ fi
 if [[ ! -z $SSH_PRIVATE_KEY ]]; then
   echo
   echo "🔑  Starting SSH agent & adding key..."
-  ssh-agent bash -c "echo \"$SSH_PRIVATE_KEY\" | tr -d '\r' | ssh-add -"
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+  echo
+  echo "🔐  Known keys:"
+  ssh-add -l
 fi
 
 if [[ ! -z $KNOWN_HOST ]]; then
