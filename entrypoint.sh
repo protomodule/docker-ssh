@@ -46,9 +46,15 @@ if [[ ! -z $KNOWN_HOST ]]; then
   ssh-keyscan -H -p${KNOWN_PORT:-22} $KNOWN_HOST >> ~/.ssh/known_hosts
 fi
 
-echo
-echo "🔌  Starting SSH connection..."
-ssh $@
+if command -v $1 &> /dev/null; then
+  echo
+  echo "🌈  Running command $1 ..." | lolcat
+  $1 ${@:2}
+else
+  echo
+  echo "🔌  Starting SSH connection..."
+  ssh $@
+fi
 
 echo
 echo "👋  Bye" | lolcat

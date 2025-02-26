@@ -46,6 +46,14 @@ Or supply a custom private key:
 docker run -e SSH_PRIVATE_KEY="$(cat ~/.ssh/id_ed25519)" --rm -it protomodule/ssh root@localhost
 ```
 
+### Secure copy
+
+To copy a file with SCP you also need to mount a volume into the container:
+
+```sh
+docker run -e SSH_PRIVATE_KEY="$(cat ~/.ssh/id_ed25519)" -v $(pwd):/local --rm protomodule/ssh scp /local/test.txt root@localhost:/tmp/test.txt
+```
+
 ## Configuration
 
 Options for scanning may be provided as environment variables:
